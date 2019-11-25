@@ -80,16 +80,29 @@ void format ( )
    int         fatentry        = 0 ;
    int         fatblocksneeded =  (MAXBLOCKS / FATENTRYCOUNT ) ;
 
-   /* prepare block 0 : fill it with '\0',
-    * use strcpy() to copy some text to it for test purposes
-	* write block 0 to virtual disk
-	*/
-   for (int i=0; i<BLOCKSIZE; i++)
+   for (int n=0; n<BLOCKSIZE; n++){
+      block.data[n]='\0';
+   }
+
+   strcpy (block.data, "CS3026 Operating Systems Assessment");
+
+   writeblock (&block, 0);
 
 	/* prepare FAT table
 	 * write FAT blocks to virtual disk
 	 */
 
+   for (n=0; n<MAXBLOCKS; n++){
+      FAT[N]=UNUSED;
+   }
+
+   FAT[0]=ENDOFCHAIN;
+   FAT[1]=2;
+   FAT[2]=ENDOFCHAIN;
+   FAT[3]=ENDOFCHAIN;
+
+   copyFat();
+   
 	 /* prepare root directory
 	  * write root directory block to virtual disk
 	  */
