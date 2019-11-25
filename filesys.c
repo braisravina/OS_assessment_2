@@ -84,6 +84,7 @@ void format ( )
     * use strcpy() to copy some text to it for test purposes
 	* write block 0 to virtual disk
 	*/
+   for (int i=0; i<BLOCKSIZE; i++)
 
 	/* prepare FAT table
 	 * write FAT blocks to virtual disk
