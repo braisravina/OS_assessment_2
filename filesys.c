@@ -80,17 +80,14 @@ void format ( )
    int         fatentry        = 0 ;
    int         fatblocksneeded =  (MAXBLOCKS / FATENTRYCOUNT ) ;
 
-   for (int n=0; n<BLOCKSIZE; n++){
+   int n;
+   for (n=0; n<BLOCKSIZE; n++){
       block.data[n]='\0';
    }
 
    strcpy (block.data, "CS3026 Operating Systems Assessment");
 
    writeblock (&block, 0);
-
-	/* prepare FAT table
-	 * write FAT blocks to virtual disk
-	 */
 
    for (n=0; n<MAXBLOCKS; n++){
       FAT[N]=UNUSED;
@@ -102,16 +99,21 @@ void format ( )
    FAT[3]=ENDOFCHAIN;
 
    copyFat();
-   
-	 /* prepare root directory
-	  * write root directory block to virtual disk
-	  */
+
+   int n;
+   diskblock_t blockmain;
+   for (n=0;n<BLOCKSIZE;n++){
+      blockmain.data[n]='\0';
+   }
+
+   blockmain.dir.isdir=1;
+   blockmain.dir.nextEntry=0;
+   writeblock(&blockmain,fatblocksneeded+1);
+   rootDirIndex=fatblocksneeded+1;
 
 }
 
-
-/* use this for testing
- */
+void copyFat
 
 void printBlock ( int blockIndex )
 {
