@@ -121,4 +121,10 @@ void printBlock ( int blockIndex )
    printf ( "virtualdisk[%d] = %s\n", blockIndex, virtualDisk[blockIndex].data ) ;
 }
 
-
+int main(){
+    format();
+    writedisk("virtualdiskD3_D1");
+    return 0;
+    
+}
+   
