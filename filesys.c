@@ -134,8 +134,6 @@ void printBlock ( int blockIndex )
 int main(){
    format();
    writedisk("virtualdiskD3_D1");
-   copyFAT();
    return 0;
-    
 }
    
