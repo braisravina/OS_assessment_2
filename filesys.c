@@ -53,19 +53,7 @@ void writeblock ( diskblock_t * block, int block_address )
    //printf ( "writeblock> virtualdisk[%d] = %s / %d\n", block_address, virtualDisk[block_address].data, (int)virtualDisk[block_address].data ) ;
 }
 
-void copyFat(){
-   int y,z;
-   diskblock_t block;
-   int fatblocksneeded=(MAXBLOCKS/FATENTRYCOUNT);
 
-   for (y=0;y<fatblocksneeded;y++){
-      for (z=0;z<FATENTRYCOUNT;z++){
-         block.fat[z]=FAT[((x*FATENTRYCOUNT)+z)];
-      }
-      writeblock(&block,y+1);
-   }
-
-}
 /* read and write FAT
  * 
  * please note: a FAT entry is a short, this is a 16-bit word, or 2 bytes
@@ -124,6 +112,19 @@ void format ( )
 
 }
 
+void copyFat(){
+   int y,z;
+   diskblock_t block;
+   int fatblocksneeded=(MAXBLOCKS/FATENTRYCOUNT);
+
+   for (y=0;y<fatblocksneeded;y++){
+      for (z=0;z<FATENTRYCOUNT;z++){
+         block.fat[z]=FAT[((x*FATENTRYCOUNT)+z)];
+      }
+      writeblock(&block,y+1);
+   }
+
+}
 
 void printBlock ( int blockIndex )
 {
