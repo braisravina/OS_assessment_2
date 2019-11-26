@@ -90,7 +90,7 @@ void format ( )
    writeblock (&block, 0);
 
    for (n=0; n<MAXBLOCKS; n++){
-      FAT[N]=UNUSED;
+      FAT[n]=UNUSED;
    }
 
    FAT[0]=ENDOFCHAIN;
@@ -98,12 +98,11 @@ void format ( )
    FAT[2]=ENDOFCHAIN;
    FAT[3]=ENDOFCHAIN;
 
-   copyFat();
 
-   int n;
+   int a;
    diskblock_t blockmain;
-   for (n=0;n<BLOCKSIZE;n++){
-      blockmain.data[n]='\0';
+   for (a=0;a<BLOCKSIZE;a++){
+      blockmain.data[a]='\0';
    }
 
    blockmain.dir.isdir=1;
@@ -113,7 +112,9 @@ void format ( )
 
 }
 
-void copyFat
+void copyFat(){
+
+}
 
 void printBlock ( int blockIndex )
 {
