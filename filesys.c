@@ -55,6 +55,7 @@ void writeblock ( diskblock_t * block, int block_address )
 
 void copyFat(){
    int y,z;
+   diskblock_t block;
    int fatblocksneeded=(MAXBLOCKS/FATENTRYCOUNT);
 
    for (y=0;y<fatblocksneeded;y++){
