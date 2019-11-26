@@ -60,7 +60,7 @@ void copyFat(){
 
    for (y=0;y<fatblocksneeded;y++){
       for (z=0;z<FATENTRYCOUNT;z++){
-         block.fat[z]=FAT[((x*FATENTRYCOUNT)+z)];
+         block.fat[z]=FAT[((y*FATENTRYCOUNT)+z)];
       }
       writeblock(&block,y+1);
    }
@@ -110,7 +110,6 @@ void format ( )
    FAT[2]=ENDOFCHAIN;
    FAT[3]=ENDOFCHAIN;
 
-   copyFAT();
 
    int a;
    for (a=0;a<BLOCKSIZE;a++){
@@ -132,9 +131,10 @@ void printBlock ( int blockIndex )
 
 
 int main(){
-    format();
-    writedisk("virtualdiskD3_D1");
-    return 0;
+   format();
+   writedisk("virtualdiskD3_D1");
+   copyFAT();
+   return 0;
     
 }
    
