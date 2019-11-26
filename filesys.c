@@ -118,7 +118,7 @@ void copyFat(){
 
    for (y=0;y<fatblocksneeded;y++){
       for (z=0;z<FATENTRYCOUNT;z++){
-         block.fat[z]=FAT[((x*FATENTRYCOUNT)+z)];
+         block.fat[z]=FAT[((y*FATENTRYCOUNT)+z)];
       }
       writeblock(&block,y+1);
    }
